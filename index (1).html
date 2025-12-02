@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Apotfy</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #121212;
+      color: #fff;
+      text-align: center;
+    }
+
+    header {
+      background: #1db954;
+      padding: 15px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .playlist {
+      margin: 30px auto;
+      max-width: 400px;
+      text-align: left;
+    }
+
+    .playlist button {
+      width: 100%;
+      background: #282828;
+      color: #fff;
+      border: none;
+      padding: 12px;
+      margin: 5px 0;
+      cursor: pointer;
+      border-radius: 6px;
+      font-size: 16px;
+      text-align: left;
+      transition: background 0.2s;
+    }
+
+    .playlist button:hover {
+      background: #1db954;
+    }
+
+    .player {
+      margin-top: 40px;
+    }
+
+    .controls button {
+      background: #1db954;
+      border: none;
+      color: white;
+      font-size: 18px;
+      padding: 10px 20px;
+      margin: 5px;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+
+    .controls button:hover {
+      background: #1ed760;
+    }
+
+    #currentSong {
+      margin-top: 15px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <header>🎵 Apotfy</header>
+
+  <div class="playlist">
+    <h2>Minhas Músicas</h2>
+    <button onclick="playSong(0)">Música 1</button>
+    <button onclick="playSong(1)">Música 2</button>
+    <button onclick="playSong(2)">Música 3</button>
+  </div>
+
+  <div class="player">
+    <div class="controls">
+      <button onclick="prevSong()">⏮ Anterior</button>
+      <button onclick="togglePlay()">⏯ Play/Pause</button>
+      <button onclick="nextSong()">⏭ Próxima</button>
+    </div>
+    <div id="currentSong">Nenhuma música tocando</div>
+  </div>
+
+  <audio id="audio"></audio>
+
+  <script>
+    const songs = [
+      { name: "Música 1", file: "musica1.mp3" },
+      { name: "Música 2", file: "musica2.mp3" },
+      { name: "Música 3", file: "musica3.mp3" }
+    ];
+
+    let currentIndex = 0;
+    const audio = document.getElementById("audio");
+    const currentSongLabel = document.getElementById("currentSong");
+
+    function playSong(index) {
+      currentIndex = index;
+      audio.src = songs[index].file;
+      audio.play();
+      currentSongLabel.textContent = "Tocando: " + songs[index].name;
+    }
+
+    function togglePlay() {
+      if (audio.src) {
+        if (audio.paused) {
+          audio.play();
+          currentSongLabel.textContent = "Tocando: " + songs[currentIndex].name;
+        } else {
+          audio.pause();
+          currentSongLabel.textContent = "Pausado: " + songs[currentIndex].name;
+        }
+      }
+    }
+
+    function nextSong() {
+      currentIndex = (currentIndex + 1) % songs.length;
+      playSong(currentIndex);
+    }
+
+    function prevSong() {
+      currentIndex = (currentIndex - 1 + songs.length) % songs.length;
+      playSong(currentIndex);
+    }
+  </script>
+</body>
+</html>
