@@ -1,0 +1,53 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.cabecalho { 
+    background-color: #000000; 
+    padding: 15px 25px; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+  } 
+
+
+.cartao {
+    width: 260px;
+    height: 200px;
+}
+
+.cartao-frente, .cartao-verso {
+    width: 100%;
+}
+
+.cartao-imagem {
+    width: 100%;
+}
+
+body { 
+    display: flex; 
+    flex-direction: column; 
+    min-height: 100vh; 
+    background-color: #292929; 
+  } 
+
+  main { 
+    flex: 1; 
+  } 
+
+  .cabecalho-link { 
+    color: #fff; 
+    text-decoration: none; 
+  } 
+
+  h1 { 
+    color: #fff; 
+    font-size: 24px; 
+  } 
+
+  footer { 
+    background-color: #000000; 
+    padding: 15px 25px; 
+    color: #fff; 
+  } 
